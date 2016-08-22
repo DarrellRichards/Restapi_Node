@@ -3,6 +3,7 @@
 * First make sure you have MySQL installed (HomeBrew is the best for Mac)
 * Now Git Clone this project (git@github.com:DarrellRichards/Restapi_Node.git)
 * cd into Restapi_Node
+* Open **database.js** up and updated database information for you in the development section
 * Run **npm install**
 * Start the app by running **npm start dev**
 * Now you will be able to make POST Requests
