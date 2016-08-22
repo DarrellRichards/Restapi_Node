@@ -18,4 +18,4 @@
 Invaild User will be a error this occurs when either the username is incorrect or the password is incorrect.
 
 # Items Coming Soon: 
-* Server side validations
+* Server side validations (Completed)
