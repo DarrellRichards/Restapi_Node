@@ -8,3 +8,10 @@
 * Now you will be able to make POST Requests
 * Signing Up user route **/auth/signup**
 * Logging User In route **/auth/login**
+
+
+# Errors You May Get:
+Invaild User will be a error this occurs when either the username is incorrect or the password is incorrect.
+
+# Items Coming Soon: 
+* Server side validations
