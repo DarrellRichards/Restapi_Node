@@ -15,13 +15,22 @@ app.use(bodyParser.json());
 // });
 
 app.post('/auth/signup', (req,res) => {
-	const { username, password, email } = req.body;
+	     const { username, password, email } = req.body;
+        // 
+      if (username == '') {
+        res.status(500).json({ error: "Username cant be blank"});
+      }
+      if (email == '') {
+        res.status(500).json({ error: "Email cant be blank"});
+      }
+      if (password == '') {
+        res.status(500).json({ error: "Password cant be blank"});
+      }
       const current_password = bcrypt.hashSync(password, 10);
-
       User.forge({
         username, email, current_password
       }, { hasTimestamps: false }).save()
-        .then(user => res.json({ success: true }))
+        .then(user => res.json({ success: true, user }))
         .catch(err => res.status(500).json({ error: err }));
 });
 
@@ -37,6 +46,12 @@ app.get('/:id', (req,res) => {
 app.post('/auth/login', (req,res) => {
 	const { email , password } = req.body;
 
+  if (email == ''){
+    res.status(500).json({ error: "Email Field Cant Be Blank"});
+  }
+  if (password == ''){
+    res.status(500).json({ error: "Password Field Cant Be Blank"});
+  }
   User.query({
     where: { email: email }
   }).fetch().then(user => {
@@ -46,7 +61,7 @@ app.post('/auth/login', (req,res) => {
           id: user.get('id'),
           username: user.get('username')
         }, config.jwtSecret);
-        res.json({ token });
+        res.json({ token, user});
       } else {
         res.status(401).json({ errors: { form: 'Invalid Credentials' } });
       }
